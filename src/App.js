@@ -1,12 +1,31 @@
-import React from 'react';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import Shop from "./components/item";
+import { getItems } from "./actions/actions";
+import { connect } from "react-redux";
 
-function App() {
+const App = (props) => {
+  const { isFetching } = props;
+  useEffect(() => {
+    getItems();
+  }, []);
+
   return (
-    <div className="App">
-      Async Redux Project
+    <div>
+      <center>
+        <h1>The Concept Store</h1>
+
+        <div className="shop"></div>
+
+        <Shop />
+      </center>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isFetching: state,
+  };
+};
+export default connect(mapStateToProps, { getItems })(App);
