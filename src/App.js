@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import Shop from "./components/item";
+import Shop from "./components/Shop";
 import { getItems } from "./actions/actions";
 import { connect } from "react-redux";
 
@@ -25,7 +25,9 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isFetching: state,
+  
+    isFetching: state
+  
   };
 };
 export default connect(mapStateToProps, { getItems })(App);
