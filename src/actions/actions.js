@@ -1,4 +1,6 @@
 import axios from "axios";
+
+export const FETCHING_DEFAULT = "FETCHING_DEFAULT";
 export const FETCHING_ITEMS = "FETCHING_ITEMS";
 export const FETCHING_ITEMS_SUCCESS = "FETCHING_ITEMS_SUCCESS";
 export const FETCHING_ITEMS_ERROR = "FETCHING_ITEMS_ERROR";
@@ -8,22 +10,19 @@ export const getItems = () => (dispatch) => {
   axios
     .get("https://fakestoreapi.com/products")
     .then((res) => {
-      // console.log(res.data);
-      const items = res.data;
-      dispatch(fetchingSuccess(items));
+      dispatch(fetchingSuccess(res.data));
     })
-    .catch((err) => console.error(err));
-  dispatch(fetchingError);
+    .catch((err) => dispatch(fetchingError(err)));
 };
 
-const setIsFetching = (isFetching) => {
+export const setIsFetching = (isFetching) => {
   return { type: FETCHING_ITEMS, payload: isFetching };
 };
 
-const fetchingSuccess = (items) => {
-  return { type: FETCHING_ITEMS_SUCCESS, payload: items };
+export const fetchingSuccess = (item) => {
+  return { type: FETCHING_ITEMS_SUCCESS, payload: item };
 };
 
-const fetchingError = (error) => {
+export const fetchingError = (error) => {
   return { type: FETCHING_ITEMS_ERROR, payload: error };
 };

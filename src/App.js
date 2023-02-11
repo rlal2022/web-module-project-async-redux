@@ -1,33 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import Shop from "./components/Shop";
-import { getItems } from "./actions/actions";
-import { connect } from "react-redux";
 
-const App = (props) => {
-  const { isFetching } = props;
-  useEffect(() => {
-    getItems();
-  }, []);
-
+const App = () => {
   return (
-    <div>
-      <center>
-        <h1>The Concept Store</h1>
-
-        <div className="shop"></div>
-
-        <Shop />
-      </center>
+    <div className="App">
+      <Shop />
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-  
-    isFetching: state
-  
-  };
-};
-export default connect(mapStateToProps, { getItems })(App);
+export default App;

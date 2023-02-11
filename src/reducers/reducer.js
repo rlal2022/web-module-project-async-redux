@@ -4,7 +4,7 @@ import {
   FETCHING_ITEMS_ERROR,
 } from "../actions/actions.js";
 
-const item = {
+const items = {
   id: 1,
   title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
   price: 109.95,
@@ -18,7 +18,7 @@ const item = {
 };
 
 const initialState = {
-  item: item,
+  items: items,
   isFetching: false,
   error: "",
 };
@@ -46,5 +46,7 @@ export const reducer = (state = initialState, action) => {
         isFetching: false,
         error: action.payload,
       };
+    default:
+      return state;
   }
 };
